@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import os
 import numpy as np
-#from scipy.signal import freqz, butter, lfilter
+from scipy.signal import freqz, butter, lfilter
 from scipy.fftpack import fft
 
 GPIO.setwarnings(False)
@@ -34,9 +34,9 @@ def threshold(signal,fs,lowcut,highcut,threshold):
 	if (v_fft >= threshold).any() == True:
 		scp = "sudo sshpass -p '******' scp /home/pi/Documents/Data/%s.txt.bz2 whale-srv@******:~/Whale_Srv/Incoming/1/" % d_time
 		os.system(scp)
-		print("FILE SENT!")
+		print("Possible Whale Detected! FILE SENT!")
 	else:
-		print("FILE NOT SENT!")	
+		print("No Whale Detected! FILE NOT SENT!")	
 	
 def transmit():
 	d_time = time.time()
