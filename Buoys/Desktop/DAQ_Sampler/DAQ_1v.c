@@ -113,7 +113,7 @@ int main (int argc, char **argv)
           fprintf(fp, "--------------------------------\n");
 
         // Always use BP_10V to make it easy (BP_10V is 0...)
-        memset(ranges, 0, sizeof(ranges));
+        memset(ranges, 5, sizeof(ranges));
         usbAInScanConfig_USB1608FS_Plus(udev, ranges);
         // Run a loop for the specified number of repeats and
         // show the results...
