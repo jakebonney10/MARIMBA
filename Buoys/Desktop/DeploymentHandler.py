@@ -23,8 +23,9 @@ GPIO.output(16, 1)
 
 def sample():
 	d_time = time.time()
-	print("Running Sample...")
+	print("Running DAQ Sample")
 	os.system("sudo /home/pi/Desktop/DAQ_Sampler/USB_Final")
+	print("Running Transmit Script")
 	os.system("sudo /home/pi/Desktop/Transmit.sh")
 
 while True:
