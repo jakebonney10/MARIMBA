@@ -26,15 +26,15 @@ os.system("/home/pi/Desktop/rtp_send.sh")
 GPIO.output(16, 1)
 
 def sample():
-  d_time = time.time()
+	d_time = time.time()
 	print("Running DAQ Sample")
 	os.system("sudo /home/pi/Desktop/DAQ_Sampler/USB_Final")
-  for event in notifier.event_gen():
-    if event is not None:
-        if 'IN_CREATE' in event[1]:
-             print("Running Transmit Script")
-             os.system("sudo /home/pi/Desktop/Transmit.sh")
+  	for event in notifier.event_gen():
+    		if event is not None:
+        		if 'IN_CREATE' in event[1]:
+             			print("Running Transmit Script")
+             			os.system("sudo /home/pi/Desktop/Transmit.sh")
 
 while True:
-  sample()
-  time.sleep(.1)
+	sample()
+	time.sleep(.1)
