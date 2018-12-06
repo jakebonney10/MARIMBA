@@ -16,18 +16,18 @@ drive = "/media/pi/usb/1/"
 d_time = 0
 
 def butter_bandpass(lowcut, highcut, fs, order=5):
-    nyq = 0.5 * fs
-    low = lowcut / nyq
-    high = highcut / nyq
-    b, a = butter(order, [low, high], btype='band')
-   return b, a
+	nyq = 0.5 * fs
+	low = lowcut / nyq
+	high = highcut / nyq
+	b, a = butter(order, [low, high], btype='band')
+	return b, a
 
 def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):
-    b, a = butter_bandpass(lowcut, highcut, fs, order=order)
-    y = lfilter(b, a, data)
-    return y	
+	b, a = butter_bandpass(lowcut, highcut, fs, order=order)
+	y = lfilter(b, a, data)
+	return y	
 
-def threshold(signal,fs,lowcut,highcut,threshold):
+def threshold(signal,fs,lowcut,highcut,threshold,d_time):
 	v = np.genfromtxt(signal, delimiter=",",skip_header=5, usecols=(0), unpack=True)
 	v_filtered = butter_bandpass_filter(v, lowcut, highcut, fs, order=6)
 	v_fft= np.abs(fft(v_filtered))
@@ -50,7 +50,7 @@ def transmit():
 	cp = "sudo cp %s.txt.bz2 /media/pi/usb/1/" % d_time
 	os.system(cp)
 	print("Saved to USB storage device")
-	threshold("/home/pi/Documents/Data/%s.txt.bz2" % d_time,10000,2500,3500,10000)
+	threshold("/home/pi/Documents/Data/%s.txt.bz2" % d_time,10000,2500,3500,10000,d_time)
 	GPIO.output(18, 0)
 	print("Done! %s" % d_time)
 	
