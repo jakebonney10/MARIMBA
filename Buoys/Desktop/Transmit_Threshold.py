@@ -50,7 +50,7 @@ def transmit():
 	cp = "sudo cp %s.txt.bz2 /media/pi/usb/1/" % d_time
 	os.system(cp)
 	print("Saved to USB storage device")
-	threshold("/home/pi/Documents/Data/%s.txt.bz2" % d_time,10000,2500,3500,10000,d_time)
+	threshold("/home/pi/Documents/Data/%s.txt.bz2" % d_time,10000,5,5000,0,d_time)
 	GPIO.output(18, 0)
 	print("Done! %s" % d_time)
 	
