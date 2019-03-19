@@ -23,6 +23,10 @@ GPIO.output(16, 1)
 
 def sample():
 	d_time = time.time()
+	print("Appending GPS Timestamp")
+	fb = open("/home/pi/Documents/Data/Data.txt","a")
+	fb.write("dataAsString") 
+	fb.close()
 	print("Running DAQ Sample")
 	os.system("sudo /home/pi/Desktop/DAQ_Sampler/USB_Final")
 	print("Running Transmit Script")
